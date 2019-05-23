@@ -1,0 +1,50 @@
+def get_names():
+    inputList = []
+    print("list any 5 of the first 20 elements in the Period table")
+    while len(inputList) < 5:
+        inputStr = input("Enter the name of an element: ")
+        if inputStr.lower() in inputList:
+            print(inputStr + " was already entered")
+        elif inputStr == "":
+            print("You didn't input anything")
+        else:
+            inputList.append(inputStr.lower())
+            
+    return inputList
+!curl https://raw.githubusercontent.com/MicrosoftLearning/intropython/master/elements1_20.txt -o elements1_20.txt
+elements = open("elements1_20.txt", "r")
+elementList = []
+correctList = []
+incorrectList = []
+correct = 0
+incorrect = 0
+numberOfLines = len(elements.readlines())
+
+elements.seek(0)
+for i in range(numberOfLines):
+    line = elements.readline()
+    line = line.strip("\n").lower()
+    elementList.append(line)
+
+inputList = get_names()
+
+for i in list(inputList):
+    if i in elementList:
+        correct += 1
+        correctList.append(i)
+    else:
+        incorrect += 1
+        incorrectList.append(i)
+
+score = correct * 20
+print()
+print(int(score), end="")
+print(" % correct")
+print("Found: ", end="")
+for i in correctList:
+    print(i.capitalize(), end=" ")
+print()
+print("Not Found: ", end="")
+for i in incorrectList:
+    print(i.capitalize(), end=" ")
+elements.close()
