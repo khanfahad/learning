@@ -7,9 +7,9 @@ while (userGuess != randNum):
     userGuess = input("Guess: ")
     counter += 1
     if (int(userGuess) < randNum):
-        print("Higher!")
+        print("You're too LOW")
     elif (int(userGuess) > randNum):
-        print("Lower!")
+        print("You're too HIGH")
     else:
         break
 print("You guessed it in " + str(counter) + " tries")
